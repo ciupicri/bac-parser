@@ -2,6 +2,8 @@ import lxml.etree
 import lxml.html
 import sys
 
+from .ged import get_inner_html
+
 def get_main_table(html):
     """ -> the mainTable table"""
     html = html[html.index('<HTML>'):]
@@ -9,6 +11,19 @@ def get_main_table(html):
     doc = lxml.html.fromstring(html)
     main_table = doc.xpath(r'//table[@id="mainTable"]')[0]
     return main_table
+
+def get_main_table_from_file(f, year):
+    """ -> the mainTable table from a file"""
+    if year <= 2009:
+        html = f.read()
+    else:
+        for line in f:
+            html = get_inner_html(line)
+            if html:
+                break
+        else:
+            return None
+    return get_main_table(html)
 
 def main(f):
     with f:
