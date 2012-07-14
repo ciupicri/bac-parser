@@ -6,6 +6,7 @@ import logging
 import logging.config
 import os
 import sys
+import time
 
 from utils import open_compressed_file, UnicodeWriter
 import bacparser.models
@@ -14,7 +15,8 @@ def parse_args():
     parser = argparse.ArgumentParser(
             description='Extract results from bacalaureat')
     parser.add_argument('--year', metavar='YEAR', type=int,
-            required=True, choices=bacparser.models.SUPPORTED_YEARS,
+            choices=bacparser.models.SUPPORTED_YEARS,
+            default=time.localtime(time.time()).tm_year,
             help='Year of the exam')
     parser.add_argument('-o', '--output', metavar='OUTPUT',
                         type=lambda f: open(f, 'wb'), default=sys.stdout)
