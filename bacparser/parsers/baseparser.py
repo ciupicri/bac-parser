@@ -9,9 +9,6 @@ class BaseParser(object):
 
     _logger = logging.getLogger(__name__ + '.' + 'BaseParser')
 
-    xpath_get_trs = \
-        lxml.etree.XPath('tr[@hint]', regexp=False, smart_strings=False)
-
     xpath_get_tds = \
         lxml.etree.XPath('td', regexp=False, smart_strings=False)
 

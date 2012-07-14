@@ -12,6 +12,9 @@ class Parser2006(BaseParser):
 
     Elev = elev2006.Elev
 
+    xpath_get_trs = \
+        lxml.etree.XPath('tr[@hint]', regexp=False, smart_strings=False)
+
     xpath_get_d_alegere_alte_arii_curiculare_nume = \
         lxml.etree.XPath('td[19]/text()', regexp=False, smart_strings=False)
 
