@@ -9,11 +9,17 @@ Installation and Requirements
 
  - python 2.7
  - [python-lxml](http://lxml.de/)
+ - python-argparse (on Python 2.6)
 
 Fedora 15
 ---------
 
-yum install python-lxml
+    yum install python-lxml
+
+Enterprise Linux 6
+------------------
+
+    yum install python-lxml python-argparse
 
 
 Copyright and License
