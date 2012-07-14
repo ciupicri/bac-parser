@@ -28,7 +28,7 @@ def write_pickle(f, record):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-            description='Extract results from bacalaureat')
+            description='Extract results from http://bacalaureat.edu.ro pages')
     parser.add_argument('--year', metavar='YEAR', type=int,
             choices=bacparser.parsers.SUPPORTED_YEARS,
             default=time.localtime(time.time()).tm_year,
