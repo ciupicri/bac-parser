@@ -6,6 +6,7 @@ import functools
 import logging
 import logging.config
 import sys
+import time
 
 from utils import open_compressed_file
 
@@ -29,7 +30,8 @@ def parse_args():
     parser = argparse.ArgumentParser(
             description='Extract results from bacalaureat')
     parser.add_argument('--year', metavar='YEAR', type=int,
-            required=True, choices=bacparser.parsers.SUPPORTED_YEARS,
+            choices=bacparser.parsers.SUPPORTED_YEARS,
+            default=time.localtime(time.time()).tm_year,
             help='Year of the exam')
     parser.add_argument('--format', metavar='FORMAT',
                         type=str, choices=('python', 'pickle'),
