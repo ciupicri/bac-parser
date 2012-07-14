@@ -1,3 +1,5 @@
+r"""Parsers for the main_table"""
+
 from .. import BacParserUnsupportedYear
 from .parser2006 import Parser2006
 from .parser2007 import Parser2007
