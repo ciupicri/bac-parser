@@ -13,7 +13,7 @@ import bacparser.models
 
 def parse_args():
     parser = argparse.ArgumentParser(
-            description='Extract results from bacalaureat')
+            description='Convert pickle files to a csv file')
     parser.add_argument('--year', metavar='YEAR', type=int,
             choices=bacparser.models.SUPPORTED_YEARS,
             default=time.localtime(time.time()).tm_year,
