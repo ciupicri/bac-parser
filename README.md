@@ -9,17 +9,18 @@ Installation and Requirements
 
  - python 2.7
  - [python-lxml](http://lxml.de/)
+ - [PylibLZMA](https://launchpad.net/pyliblzma) (for LZMA/XZ compressed files)
  - python-argparse (on Python 2.6)
 
 Fedora 15
 ---------
 
-    yum install python-lxml
+    yum install python-lxml pyliblzma
 
 Enterprise Linux 6
 ------------------
 
-    yum install python-lxml python-argparse
+    yum install python-lxml pyliblzma python-argparse
 
 
 Copyright and License
