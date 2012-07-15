@@ -13,12 +13,6 @@ from utils import open_compressed_file
 from bacparser.maintable import get_main_table_from_file
 import bacparser.parsers
 
-def get_data_from_file(f, year):
-    parser = bacparser.parsers.get_parser(year)
-    main_table = get_main_table_from_file(f, year)
-    for i in parser.get_elev(main_table):
-        yield i
-
 def write_python(f, record):
     f.write(repr(record))
     f.write('\n#######################################################################\n')
@@ -45,6 +39,7 @@ def parse_args():
 def main():
     logging.config.fileConfig('logging.ini', disable_existing_loggers=False)
     args = parse_args()
+    parser = bacparser.parsers.get_parser(args.year)
     if args.format == 'python':
         write = functools.partial(write_python, args.output)
     else: # 'pickle'
@@ -53,7 +48,8 @@ def main():
         for filename in args.filenames:
             with open_compressed_file(filename) as f:
                 logging.info("Extracting from %s" % (filename,))
-                for i in get_data_from_file(f, args.year):
+                main_table = get_main_table_from_file(f, args.year)
+                for i in parser.get_elev(main_table):
                     write(i)
 
 if __name__ == '__main__':
