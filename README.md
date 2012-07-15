@@ -74,6 +74,15 @@ If you don't need the pickle files, you can do it in a single step:
 
 [pickle]: http://docs.python.org/library/pickle.html
 
+Spiders
+-------
+
+Here's a list of software you might find useful for downloading the pages:
+
+ * [bac-spider](https://github.com/ciupicri/bac-spider) - the spider I used to
+   get the results for years 2006 - 2011
+ * [bac-spider-2012](https://github.com/diana-coman/bac-spider-2012) - a
+   spider for getting the results for year 2012
 
 Copyright and License
 =====================
