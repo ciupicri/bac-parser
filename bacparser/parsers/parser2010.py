@@ -1,5 +1,6 @@
 import logging
 
+from .ged import get_inner_html
 from .parser2009 import Parser2009
 from ..models import elev2010
 
@@ -46,3 +47,19 @@ class Parser2010(Parser2009):
         return {
             'nume': items[0][0].replace('<br>', ''),
             'rezultat_final': items[2][1]}
+
+
+    @classmethod
+    def get_main_table_from_file(cls, f):
+        """Return the mainTable table from file f while taking care of all the
+        obfuscation and garbage.
+        """
+
+        for line in f:
+            html = get_inner_html(line)
+            if html:
+                break
+        else:
+            return None
+        html = html[html.index('<HTML>'):] # remove leading garbage
+        return cls.get_main_table_from_html(html)

@@ -12,6 +12,10 @@ class Parser2012(BaseParser):
 
     Elev = elev2010.Elev
 
+    xpath_get_main_table = lxml.etree.XPath(r'//table[@class="mainTable"]',
+                                            regexp=False,
+                                            smart_strings=False)
+
     xpath_get_trs = \
         lxml.etree.XPath('tr[@onclick]', regexp=False, smart_strings=False)
 
@@ -45,3 +49,13 @@ class Parser2012(BaseParser):
     @classmethod
     def get_extra_data_from_tr(cls, tr):
         return {'nume': ''.join(cls.xpath_get_nume(tr))}
+
+
+    @classmethod
+    def get_main_table_from_file(cls, f):
+        """Return the mainTable table from file f while taking care of all the
+        obfuscation and garbage.
+        """
+
+        html = f.read()
+        return cls.get_main_table_from_html(html)

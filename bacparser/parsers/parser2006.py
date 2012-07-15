@@ -12,6 +12,10 @@ class Parser2006(BaseParser):
 
     Elev = elev2006.Elev
 
+    xpath_get_main_table = lxml.etree.XPath(r'//table[@id="mainTable"]',
+                                            regexp=False,
+                                            smart_strings=False)
+
     xpath_get_trs = \
         lxml.etree.XPath('tr[@hint]', regexp=False, smart_strings=False)
 
@@ -53,3 +57,14 @@ class Parser2006(BaseParser):
             'd_alegere_alte_arii_curiculare_nume':
                 ' - '.join(cls.data_from_tr_filter(t) for t in
                     cls.xpath_get_d_alegere_alte_arii_curiculare_nume(tr))}
+
+
+    @classmethod
+    def get_main_table_from_file(cls, f):
+        """Return the mainTable table from file f while taking care of all the
+        obfuscation and garbage.
+        """
+
+        html = f.read()
+        html = html[html.index('<HTML>'):] # remove leading garbage
+        return cls.get_main_table_from_html(html)
