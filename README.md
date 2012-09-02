@@ -84,6 +84,36 @@ Here's a list of software you might find useful for downloading the pages:
  * [bac-spider-2012](https://github.com/diana-coman/bac-spider-2012) - a
    spider for getting the results for year 2012
 
+
+Why?
+====
+
+When talking about this national exam, most Romanian TV shows and newspaper
+articles mention only stuff like only p% have passed it, N pupils managed to
+get a maxim score or they point to high-schools where everyone failed. But
+things were about to change in the summer of 2011. A friend of mine, [Diana
+Coman] wanted more than just press reports, she wanted to do a statistical
+analysis of the data.
+
+Unfortunately the data is available only in the form of HTML pages which might
+look nice, but they're useless when it comes to statistics (she mentioned this
+in the article ["Avem date de la Bac. Ce facem cu ele?"][DC-data]). So she
+started writing a scraping script. After noticing that it was harder than she
+though because the pages were a bit obfuscated, she asked for my help so she
+could analyze the data while it was still hot. I managed to write something
+that did the job, but it was ugly just like the HTML pages. After she asked for
+the data from previous years as well, I decided to start *almost* from scratch
+and you can see the result here. The old code is in the [bac-parser.old]
+repository and it's not for the faint of the heart. As for the analysis,
+Diana's first article was a top of the cheaters that were caught - ["Topul
+hoților (prinși) la Bacalaureat 2011"][DC-top].
+
+[Diana Coman]: http://www.dianacoman.com
+[DC-data]: http://www.dianacoman.com/blog/2011/07/08/avem-date-de-la-bac-ce-facem-cu-ele/
+[bac-parser.old]: https://github.com/ciupicri/bac-parser.old
+[DC-top]: http://www.dianacoman.com/blog/2011/07/09/topul-hotiei-dovedite-la-bacalaureat-2011/
+
+
 Copyright and License
 =====================
 
