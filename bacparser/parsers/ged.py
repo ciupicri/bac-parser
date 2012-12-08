@@ -7,7 +7,7 @@ r"""Emulates the ``ged`` JavaScript function from some HTML pages
 
 Siveco must really like the `Xzibit Yo Dawg meme`_ because they have a
 JavaScript function named ``ged`` that returns an HTML page which contains the
-results. This module emulates that functionmooooooooooosome.
+results. This module emulates that function.
 
 .. _Xzibit Yo Dawg meme: http://knowyourmeme.com/memes/xzibit-yo-dawg
 """
