@@ -26,7 +26,7 @@ def open_compressed_file(filename):
     if filename == '-':
         return sys.stdin
     ext = os.path.splitext(filename)[1]
-    f = COMPRESSED_FILE_CLASSES.get(ext, file)(filename)
+    f = COMPRESSED_FILE_CLASSES.get(ext, open)(filename)
     dir(f) # workaround for https://bugzilla.redhat.com/show_bug.cgi?id=720111
     return f
 
