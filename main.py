@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 from __future__ import print_function
 import argparse
-import cPickle
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
 import functools
 import logging
 import logging.config
@@ -17,7 +20,7 @@ def write_python(f, record):
     f.write('\n#######################################################################\n')
 
 def write_pickle(f, record):
-    cPickle.dump(record, f, cPickle.HIGHEST_PROTOCOL)
+    pickle.dump(record, f, pickle.HIGHEST_PROTOCOL)
 
 def parse_args():
     parser = argparse.ArgumentParser(

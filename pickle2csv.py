@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 from __future__ import print_function
 import argparse
-import cPickle
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
 import logging
 import logging.config
 import os
@@ -33,7 +36,7 @@ def main():
         for filename in args.filenames:
                 logging.info('Converting %s' % (filename,))
                 with open_compressed_file(filename) as f:
-                    unpickler = cPickle.Unpickler(f)
+                    unpickler = pickle.Unpickler(f)
                     try:
                         while True:
                             o = unpickler.load()
