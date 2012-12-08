@@ -11,12 +11,13 @@ import sys
 
 from gzip import GzipFile
 from bz2 import BZ2File
-from lzma import LZMAFile
-
-
 COMPRESSED_FILE_CLASSES = {'.gz': GzipFile,
-                           '.bz2': BZ2File,
-                           '.xz': LZMAFile}
+                           '.bz2': BZ2File}
+try:
+    from lzma import LZMAFile
+    COMPRESSED_FILE_CLASSES['.xz'] = LZMAFile
+except ImportError:
+    pass
 
 def open_compressed_file(filename):
     """Open a possibly compressed file. '-' stands for stdin"""
