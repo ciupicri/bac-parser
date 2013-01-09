@@ -1,1 +1,4 @@
 /data
+
+# Python bytecode
+*.py[cod]
