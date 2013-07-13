@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from __future__ import print_function
 import argparse
+from contextlib import closing
 try:
     import cPickle as pickle
 except ImportError:
@@ -8,6 +9,7 @@ except ImportError:
 import functools
 import logging
 import logging.config
+from multiprocessing import Pool
 import sys
 import time
 
@@ -34,24 +36,42 @@ def parse_args():
                         default='python')
     parser.add_argument('-o', '--output', metavar='OUTPUT',
                         type=lambda f: open(f, 'wb'), default=sys.stdout)
+    parser.add_argument('--processes', metavar='PROCESSES',
+                        type=int)
     parser.add_argument('filenames', metavar='FILE', type=str, nargs='+',
             help='Files to parse')
     return parser.parse_args()
 
+
+# === parallel processing ===
+
+parser_cls = None
+
+def initialize(year):
+    global parser_cls
+    parser_cls = bacparser.parsers.get_parser_cls(year)
+
+def parse(filename):
+    with open_compressed_file(filename) as f:
+        logging.info("Extracting from %s" % (filename,))
+        return list(parser_cls(f))
+
+# === end of parallel processing ===
+
+
 def main():
     logging.config.fileConfig('logging.ini', disable_existing_loggers=False)
     args = parse_args()
-    parser_cls = bacparser.parsers.get_parser_cls(args.year)
     if args.format == 'python':
         write = functools.partial(write_python, args.output)
     else: # 'pickle'
         write = functools.partial(write_pickle, args.output)
     with args.output:
-        for filename in args.filenames:
-            with open_compressed_file(filename) as f:
-                logging.info("Extracting from %s" % (filename,))
-                for i in parser_cls(f):
+        with closing(Pool(args.processes, initialize, (args.year,))) as pool:
+            for L in pool.imap_unordered(parse, args.filenames, chunksize=2):
+                for i in L:
                     write(i)
+
 
 if __name__ == '__main__':
     main()
