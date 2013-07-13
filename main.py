@@ -9,6 +9,7 @@ except ImportError:
 import functools
 import logging
 import logging.config
+import math
 from multiprocessing import Pool
 import sys
 import time
@@ -68,7 +69,10 @@ def main():
         write = functools.partial(write_pickle, args.output)
     with args.output:
         with closing(Pool(args.processes, initialize, (args.year,))) as pool:
-            for L in pool.imap_unordered(parse, args.filenames, chunksize=2):
+            # split the workload in equal large chunks
+            chunksize = len(args.filenames) / pool._processes + \
+                        1 if len(args.filenames) % pool._processes else 0
+            for L in pool.imap_unordered(parse, args.filenames, chunksize=chunksize):
                 for i in L:
                     write(i)
 
