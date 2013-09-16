@@ -97,19 +97,19 @@ analysis of the data.
 
 Unfortunately the data is available only in the form of HTML pages which might
 look nice, but they're useless when it comes to statistics (she mentioned this
-in the article ["Avem date de la Bac. Ce facem cu ele?"][DC-data]). So she
-started writing a scraping script. After noticing that it was harder than she
-though because the pages were a bit obfuscated, she asked for my help so she
-could analyze the data while it was still hot. I managed to write something
-that did the job, but it was ugly just like the HTML pages. After she asked for
-the data from previous years as well, I decided to start *almost* from scratch
-and you can see the result here. The old code is in the [bac-parser.old]
-repository and it's not for the faint of the heart. As for the analysis,
-Diana's first article was a top of the cheaters that were caught - ["Topul
-hoților (prinși) la Bacalaureat 2011"][DC-top].
+in the article ["Bac Data"][DC-bac-data]). So she started writing a scraping
+script. After noticing that it was harder than she though because the pages
+were a bit obfuscated, she asked for my help so she could analyze the data
+while it was still hot. I managed to write something that did the job, but it
+was ugly just like the HTML pages. After she asked for the data from previous
+years as well, I decided to start *almost* from scratch and you can see the
+result here. The old code is in the [bac-parser.old] repository and it's not
+for the faint of the heart. As for the analysis, Diana's first article was a
+top of the cheaters that were caught - ["Topul hoților (prinși) la Bacalaureat
+2011"][DC-top].
 
 [Diana Coman]: http://www.dianacoman.com
-[DC-data]: http://www.dianacoman.com/blog/2011/07/08/avem-date-de-la-bac-ce-facem-cu-ele/
+[DC-bac-data]: http://www.dianacoman.com/bac-data/
 [bac-parser.old]: https://github.com/ciupicri/bac-parser.old
 [DC-top]: http://www.dianacoman.com/blog/2011/07/09/topul-hotiei-dovedite-la-bacalaureat-2011/
 
