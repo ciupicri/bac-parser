@@ -7,7 +7,7 @@ from .parser2009 import Parser2009
 from .parser2010 import Parser2010
 from .parser2012 import Parser2012
 
-SUPPORTED_YEARS = range(2006, 2013+1)
+SUPPORTED_YEARS = range(2006, 2014+1)
 
 def get_parser_cls(year):
     """-> Parser class for the specified year"""
@@ -21,6 +21,6 @@ def get_parser_cls(year):
         return Parser2009
     if year <= 2011:
         return Parser2010
-    if year <= 2013:
+    if year <= 2014:
         return Parser2012
     raise BacParserUnsupportedYear('Unsupported year')
