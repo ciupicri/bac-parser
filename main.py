@@ -70,8 +70,8 @@ def main():
     with args.output:
         with closing(Pool(args.processes, initialize, (args.year,))) as pool:
             # split the workload in equal large chunks
-            chunksize = len(args.filenames) / pool._processes + \
-                        1 if len(args.filenames) % pool._processes else 0
+            chunksize = (len(args.filenames) / pool._processes +
+                         (1 if len(args.filenames) % pool._processes else 0))
             for L in pool.imap_unordered(parse, args.filenames, chunksize=chunksize):
                 for i in L:
                     write(i)
